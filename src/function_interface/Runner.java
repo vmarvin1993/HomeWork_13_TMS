@@ -25,7 +25,7 @@ public class Runner {
                 String inString = inputString.nextLine();
                 System.out.println("Original: " + inString);
 
-                FunInterface<String, Integer> str = (s) -> {
+                FunInterface<String> str = (s) -> {
                     StringBuilder sb = new StringBuilder();
                     String temp;
                     for (int i = s.length() - 1; i >= 0; i--) {
@@ -43,7 +43,7 @@ public class Runner {
                  */
                 System.out.println("Enter a number:");
                 int inNumber = inputInt.nextInt();
-                FunInterface<Integer, Integer> factorial = (s) -> {
+                FunInterface<Integer> factorial = (s) -> {
                     int result = 1;
                     for (int i = 1; i <= s; i++)
                         result = i * result;
