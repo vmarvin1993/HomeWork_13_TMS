@@ -7,19 +7,16 @@ public class Runner {
     static Scanner inputString = new Scanner(System.in);
     static Scanner inputInt = new Scanner(System.in);
 
-    static String strFunc(StringInterface sf, String s) {
-        return sf.getFunc(s);
-    }
-
     public static void main(String[] args) {
         System.out.println("Chose:");
         System.out.println("1 - Reverse string");
-        System.out.println("2 - find factorial number");
-        System.out.println("3 - exit");
+        System.out.println("2 - Find factorial number");
+        System.out.println("0 - Exit");
 
         int in = input.nextInt();
 
         while (true) {
+
             if (in == 1) {
                 /**
                  * Reverse input words
@@ -28,15 +25,17 @@ public class Runner {
                 String inString = inputString.nextLine();
                 System.out.println("Original: " + inString);
 
-                StringInterface reverse = (str) -> {
-                    String result = "Reverse: ";
-                    int i;
-                    for (i = str.length() - 1; i >= 0; i--)
-                        result += str.charAt(i);
-                    return result;
-                };
+                FunInterface<String, Integer> str = (s) -> {
+                    StringBuilder sb = new StringBuilder();
+                    String temp;
+                    for (int i = s.length() - 1; i >= 0; i--) {
+                        temp = String.valueOf(s.charAt(i));
+                        sb.append(temp);
+                    }
+                    return sb.toString();
 
-                System.out.println(strFunc(reverse, inString));
+                };
+                System.out.println("Reverse string: " + str.getFunc(inString));
                 return;
             } else if (in == 2) {
                 /**
@@ -44,14 +43,13 @@ public class Runner {
                  */
                 System.out.println("Enter a number:");
                 int inNumber = inputInt.nextInt();
-                IntInterface factorial = (n) -> {
+                FunInterface<Integer, Integer> factorial = (s) -> {
                     int result = 1;
-                    for (int i = 1; i <= n; i++)
+                    for (int i = 1; i <= s; i++)
                         result = i * result;
                     return result;
                 };
-
-                System.out.println("Factorial number: " + factorial.getNum(inNumber));
+                System.out.println("Factorial number : " + factorial.getFunc(inNumber));
                 return;
             } else if (in == 0) {
                 break;
@@ -59,6 +57,7 @@ public class Runner {
         }
     }
 }
+
 //    Original: Hello world
 //        Reverse: dlrow olleH
 //
